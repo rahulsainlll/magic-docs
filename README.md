@@ -1,0 +1,2 @@
+# MagicDocs
+Beginner Docs
