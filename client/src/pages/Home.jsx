@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "../components/SearchBar";
+import { Icons } from "@/components/Icons";
 
 export default function Home() {
   return (
@@ -31,14 +32,15 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex gap-16 lg:px-8 lg:py-24">
         <div className="h-full w-full flex flex-col items-center gap-4">
           {/* <Icons.Sparkles className="h-16 w-16" /> */}
+          {/* <Icons.Magic className="h-24 w-36 sm:h-32 sm:w-40" /> */}
 
           <h1 className="tracking-tight text-4xl sm:text-6xl font-bold">
-            MagicSearch
+            MagicDocs
           </h1>
 
-          <p className="max-w-xl text-center text-lg text-slate-700">
-            A beautifully designed, hybrid search engine that enhances search
-            accuracy by querying semantically related results.
+          <p className="max-w-xl text-center text-lg text-slate-600">
+            Build boldly, browse easily: Your quick-reference guide to seamless,
+            versatile software development strategies and solutions.
           </p>
 
           <div className="mx-auto mt-16 w-full max-w-2xl flex flex-col">
