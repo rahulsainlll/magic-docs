@@ -1,22 +1,24 @@
-"use client";
-
+import { useState, useRef, useTransition } from "react";
+import {  useLocation } from "react-router-dom";
 import { Loader2, Search } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { useRef, useState, useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "./ui/button"; 
+import { Input } from "./ui/input"; 
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 const SearchBar = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const searchParams = useSearchParams();
-  const defaultQuery = searchParams.get("query") || "";
+  // const history = useHistory();
+  const searchQuery = useQuery();
+  const defaultQuery = searchQuery.get("query") || "";
+  const inputRef = useRef(null);
   const [isSearching, startTransition] = useTransition();
-  const router = useRouter();
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState(defaultQuery);
 
   const search = () => {
     startTransition(() => {
-      router.push(`/search?query=${query}`);
+      history.push(`/search?query=${query}`);
     });
   };
 
@@ -31,15 +33,13 @@ const SearchBar = () => {
             if (e.key === "Enter") {
               search();
             }
-
             if (e.key === "Escape") {
-              inputRef?.current?.blur();
+              inputRef.current?.blur();
             }
           }}
           ref={inputRef}
-          className="aboslute inset-0 h-full"
+          className="absolute inset-0 h-full"
         />
-
         <Button
           disabled={isSearching}
           size="sm"

@@ -1,12 +1,7 @@
-import type { LucideProps } from "lucide-react";
-import MagicBook from "../assest/MagicBook.png";
-
-type IconProps = {
-  className?: string;
-};
+import { LucideProps } from "lucide-react";
 
 export const Icons = {
-  Sparkles: (props: LucideProps) => (
+  Sparkles: ({props}) => (
     <svg {...props} viewBox="0 0 512.002 512.002">
       <path
         fill="#F9D366"
@@ -166,6 +161,4 @@ export const Icons = {
       />
     </svg>
   ),
-
-  Magic: ({className}: IconProps) => <img src={MagicBook.src} className={className} alt="Magic Book" />,
 };
