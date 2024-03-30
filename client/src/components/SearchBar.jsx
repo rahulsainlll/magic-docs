@@ -1,34 +1,34 @@
 import { useState, useRef, useTransition } from "react";
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Loader2, Search } from "lucide-react";
-import { Button } from "./ui/button"; 
-import { Input } from "./ui/input"; 
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
+// const useQuery = () => {
+//   return new URLSearchParams(useLocation().search);
+// };
 
 const SearchBar = () => {
   // const history = useHistory();
-  const searchQuery = useQuery();
-  const defaultQuery = searchQuery.get("query") || "";
-  const inputRef = useRef(null);
+  // const searchQuery = useQuery();
+  // const defaultQuery = searchQuery.get("query") || "";
+  // const inputRef = useRef(null);
   const [isSearching, startTransition] = useTransition();
-  const [query, setQuery] = useState(defaultQuery);
+  // const [query, setQuery] = useState(defaultQuery);
 
-  const search = () => {
-    startTransition(() => {
-      history.push(`/search?query=${query}`);
-    });
-  };
+  // const search = () => {
+  //   startTransition(() => {
+  //     history.push(`/search?query=${query}`);
+  //   });
+  // };
 
   return (
     <div className="relative w-full h-14 flex flex-col bg-white">
       <div className="relative h-14 z-10 rounded-md">
         <Input
-          disabled={isSearching}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          // disabled={isSearching}
+          // value={query}
+          // onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               search();
@@ -37,13 +37,13 @@ const SearchBar = () => {
               inputRef.current?.blur();
             }
           }}
-          ref={inputRef}
+          // ref={inputRef}
           className="absolute inset-0 h-full"
         />
         <Button
-          disabled={isSearching}
+          // disabled={isSearching}
           size="sm"
-          onClick={search}
+          // onClick={search}
           className="absolute right-0 inset-y-0 h-full rounded-l-none"
         >
           {isSearching ? (

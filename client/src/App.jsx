@@ -17,6 +17,7 @@ import "./App.css";
 
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
+import Backend from "./pages/Backend";
 
 // Axios
 axios.defaults.baseURL = "http://localhost:8000";
@@ -29,6 +30,7 @@ function App() {
         <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/backend" element={<Backend />} />
         </Routes>
       </BrowserRouter>
     </>
