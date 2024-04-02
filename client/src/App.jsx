@@ -8,7 +8,6 @@
 //   );
 // }
 
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 // import Signup from "./pagess/Signup";
@@ -18,6 +17,7 @@ import "./App.css";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import Backend from "./pages/Backend";
+import Docs from "./pages/Docs";
 
 // Axios
 axios.defaults.baseURL = "http://localhost:8000";
@@ -31,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/backend" element={<Backend />} />
+          <Route path="/docs" element={<Docs />} />
         </Routes>
       </BrowserRouter>
     </>
