@@ -32,20 +32,17 @@ const articleSchema = new mongoose.Schema({
   },
 });
 
-articleSchema.pre("validate", (next) => {
+articleSchema.pre("validate", function (next) {
   if (this.title) {
     this.slug = slugify(this.title, { lower: true, strict: true });
   }
 
   if (this.markdown) {
-    this.sanitizedHtml = dompurify.sanitize(marked(this.markdown));
+    this.sanitizedHtml = dompurify.sanitize(marked.parse(this.markdown));
   }
 
   next();
 });
 
-const Docs = mongoose.model("Docs", articleSchema);
 
-module.exports = {
-  Docs,
-};
+module.exports = mongoose.model("Docs", articleSchema);
