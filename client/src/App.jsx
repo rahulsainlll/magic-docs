@@ -1,23 +1,12 @@
-// import { Button } from "@/components/ui/button";
-
-// export default function Home() {
-//   return (
-//     <div>
-//       <Button>Click me</Button>
-//     </div>
-//   );
-// }
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-// import Signup from "./pagess/Signup";
-// import Signin from "./pagess/Signin";
 import "./App.css";
 
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import Backend from "./pages/Backend";
 import Docs from "./pages/Docs";
+import DocPage from "./pages/DocPage";
 
 // Axios
 axios.defaults.baseURL = "http://localhost:8000";
@@ -32,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/backend" element={<Backend />} />
           <Route path="/docs" element={<Docs />} />
+          <Route path="/docs/:slug" element={DocPage} />
         </Routes>
       </BrowserRouter>
     </>

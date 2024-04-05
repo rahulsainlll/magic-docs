@@ -1,50 +1,51 @@
 const mongoose = require("mongoose");
+const marked = require("marked");
+const slugify = require("slugify");
+const createDomPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const dompurify = createDomPurify(new JSDOM().window);
 
-const userSchema = new mongoose.Schema({
-  username: {
+const articleSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  markdown: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  slug: {
     type: String,
     required: true,
     unique: true,
-    trim: true,
-    lowercase: true,
-    minLength: 3,
-    maxLength: 30,
   },
-  password: {
+  sanitizedHtml: {
     type: String,
-    required: true,
-    minLength: 6,
-  },
-  firstName: {
-    type: String,
-    required: true,
-    trim: true,
-    maxLength: 50,
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-    maxLength: 50,
-  },
-});
-
-const accountSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  balance: {
-    type: Number,
     required: true,
   },
 });
 
-const Account = mongoose.model("Account", accountSchema);
-const User = mongoose.model("User", userSchema);
+articleSchema.pre("validate", (next) => {
+  if (this.title) {
+    this.slug = slugify(this.title, { lower: true, strict: true });
+  }
+
+  if (this.markdown) {
+    this.sanitizedHtml = dompurify.sanitize(marked(this.markdown));
+  }
+
+  next();
+});
+
+const Docs = mongoose.model("Docs", articleSchema);
 
 module.exports = {
-  User,
-  Account,
+  Docs,
 };
