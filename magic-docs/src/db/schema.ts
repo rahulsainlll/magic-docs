@@ -7,3 +7,5 @@ export const docsTable = pgTable("docs" , {
   author: text('author').notNull(),
 
 })
+
+export type Docs = typeof docsTable.$inferSelect
