@@ -1,14 +1,19 @@
-import { Icons } from '@/components/Icons';
-import SearchBar from '@/components/SearchBar';
-import { ArrowUpRight } from 'lucide-react';
-import React from 'react'
+"use client";
+
+import { Icons } from "@/components/Icons";
+import SearchBar from "@/components/SearchBar";
+import { ArrowUpRight } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { startTransition } from "react";
 
 export default function Home() {
+  const router = useRouter();
 
-     const Backend = () => {
-    //    navigate("/backend");
-
-     };
+  const Backend = () => {
+    startTransition(() => {
+      router.push(`/backend`);
+    });
+  };
 
   return (
     <div className="relative min-h-screen isolate overflow-hidden border-b border-gray-200 bg-white text-slate-900">
@@ -52,7 +57,7 @@ export default function Home() {
 
           <div className="mt-12 flex gap-2">
             <button
-            //   onClick={Backend}
+              onClick={Backend}
               className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1"
             >
               Backend <ArrowUpRight className="h-5" />
