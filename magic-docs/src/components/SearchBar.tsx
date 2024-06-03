@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = () => {
   const searchParams = useSearchParams();
-  const defaultQuery = searchParams.get("query") || "";
+  const defaultQuery = searchParams ? searchParams.get("query") || "" : "";
   const inputRef = useRef<HTMLInputElement>(null);
   const [isSearching, startTransition] = useTransition();
   const router = useRouter();
@@ -31,7 +31,7 @@ const SearchBar = () => {
             if (e.key === "Enter") {
               search();
             }
- 
+
             if (e.key === "Escape") {
               inputRef?.current?.blur();
             }
