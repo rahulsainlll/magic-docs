@@ -4,6 +4,7 @@ import { sql } from "drizzle-orm";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+// import BackButton from "@/components/backButton";
 
 interface PageProps {
   searchParams: {
@@ -51,6 +52,7 @@ const Page = async ({ searchParams }: PageProps) => {
   return (
     <div className=" max-w-lg lg:max-w-3xl mx-auto ">
       <ul className="py-4 divide-y divide-zinc-100 bg-white shadow-md hover:shadow-xl rounded-b-md h-full border rounded-md ">
+        {/* <BackButton/> */}
         {docs.slice(0, 3).map((doc) => (
           <Link key={doc.id} href={`/docs/${doc.id}`}>
             <li className="mx-auto py-4 px-8 flex space-x-4">
