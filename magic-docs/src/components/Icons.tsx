@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { LucideProps } from "lucide-react";
 import MagicBook from "../../public/MagicBook.png";
+import Image from "next/image";
 
 type IconProps = {
   className?: string;
@@ -169,6 +170,6 @@ export const Icons = {
   ),
 
   Magic: ({ className }: IconProps) => (
-    <img src={MagicBook.src} className={className} alt="Magic Book" />
+    <Image src={MagicBook.src} className={className} alt="Magic Book" />
   ),
 };
