@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Check, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { docsTable } from '@/db/schema'
+import BackButton from '@/components/backButton'
 
 interface PageProps {
   params: {
@@ -29,7 +30,7 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div className='py-8 pb-8 px-12 divide-y divide-zinc-100 bg-white shadow-md rounded-b-md'>
       <div>
-      
+      <BackButton />
 
         <div className='mt-4'>
           <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
