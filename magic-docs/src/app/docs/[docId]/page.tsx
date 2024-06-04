@@ -8,7 +8,8 @@ import { Check, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { docsTable } from '@/db/schema'
 import BackButton from '@/components/backButton'
-
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 interface PageProps {
   params: {
     docId: string
@@ -54,9 +55,9 @@ const Page = async ({ params }: PageProps) => {
           </div>
 
           <div className="mt-4 space-y-6">
-            <p className="text-xl max-w-prose text-muted-foreground break-words">
-              {docs.content}
-            </p>
+            <div className="prose prose-lg max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{docs.content}</ReactMarkdown>
+            </div>
           </div>
 
           <div className="mt-6 flex items-center">

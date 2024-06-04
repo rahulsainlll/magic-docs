@@ -29,7 +29,7 @@ const Page = async ({ searchParams }: PageProps) => {
         .split(" ")
         .join(" & ")}))`
     )
-    .limit(1);
+    .limit(2);
 
   if (docs.length === 0) {
     return (
