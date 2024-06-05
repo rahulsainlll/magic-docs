@@ -6,6 +6,7 @@ export default function MainPage() {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
+        {/* <Navbar/> */}
         <Home />
       </Suspense>
     </div>
