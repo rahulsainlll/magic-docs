@@ -3,16 +3,45 @@
 import { Icons } from "@/components/Icons";
 import SearchBar from "@/components/SearchBar";
 import { ArrowUpRight } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { startTransition } from "react";
-import Navbar from "./navbar";
 
 export default function Home() {
   const router = useRouter();
 
   const Backend = () => {
     startTransition(() => {
-      router.push(`/backend`);
+      router.push(`/search?query=backend`);
+    });
+  };
+
+  const Database = () => {
+    startTransition(() => {
+      router.push(`/search?query=database`);
+    });
+  };
+
+  const Frontend = () => {
+    startTransition(() => {
+      router.push(`/search?query=frontend`);
+    });
+  };
+
+  const Typescript = () => {
+    startTransition(() => {
+      router.push(`/search?query=typescript`);
+    });
+  };
+
+  const Write = () => {
+    startTransition(() => {
+      router.push("/write");
+    });
+  };
+
+  const Request = () => {
+    startTransition(() => {
+      router.push("/request");
     });
   };
 
@@ -44,7 +73,7 @@ export default function Home() {
 
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex gap-16 lg:px-8 lg:py-24">
         <div className="h-full w-full flex flex-col items-center gap-4">
-          <Icons.Sparkles className="h-16 w-16" />
+          <Icons.Sparkles className="lg:h-16 lg:w-16 w-10 h-10" />
           {/* <Icons.Magic className="h-24 w-36 sm:h-32 sm:w-40" /> */}
 
           <h1 className="tracking-tight text-4xl sm:text-6xl font-bold">
@@ -63,22 +92,35 @@ export default function Home() {
             >
               Backend <ArrowUpRight className="h-5" />
             </button>
-            <button className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1">
+            <button
+              onClick={Frontend}
+              className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1"
+            >
               Frontend <ArrowUpRight className="h-5" />
             </button>
-            <button className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1">
-              Fullstack <ArrowUpRight className="h-5" />
-            </button>
-            <button className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1">
+            <button
+              onClick={Database}
+              className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1"
+            >
               Database <ArrowUpRight className="h-5" />
+            </button>
+            <button
+              onClick={Typescript}
+              className="text-sm py-1 px-2 border border-[#e4e4e7] hover:border-[#000000] rounded-3xl shadow flex gap-1"
+            >
+              Typescript <ArrowUpRight className="h-5" />
             </button>
           </div>
 
           <div className="flex gap-2  ">
-            <button className="text-[#70a3f3] text-xs py-1 px-2 border border-[#70a3f3] hover:border-white hover:bg-[#70a3f3] hover:text-white rounded-3xl shadow flex gap-1">
+            <button onClick={Write} className="text-[#70a3f3] text-xs transition-all py-1 px-2 border border-[#70a3f3] hover:border-white hover:bg-[#70a3f3] hover:text-white rounded-3xl shadow flex gap-1">
               Write a documentaion and get paid
             </button>
-            <button className="text-[#70a3f3] text-xs py-1 px-2 border border-[#70a3f3] hover:border-white hover:bg-[#70a3f3] hover:text-white rounded-3xl shadow flex gap-1">
+
+            <button
+              onClick={Request}
+              className="text-[#70a3f3] text-xs transition-all py-1 px-2 border border-[#70a3f3] hover:border-white hover:bg-[#70a3f3] hover:text-white rounded-3xl shadow flex gap-1"
+            >
               Request a documentaion for free
             </button>
           </div>

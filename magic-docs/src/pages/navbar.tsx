@@ -8,7 +8,7 @@ import { Github } from "lucide-react";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className=" sticky inset-x-0 top-0 z-30 text-black flex items-center justify-between p-4 max-w-lg lg:max-w-6xl mx-auto transition-all border-gray-200 bg-white/75 backdrop-blur-lg">
+    <nav className=" sticky inset-x-0 top-0 z-30 text-black flex items-center justify-between p-4 max-w-lg lg:max-w-6xl md:max-w-2xl mx-auto transition-all border-gray-200 bg-white/75 backdrop-blur-lg">
       <div className="flex items-center">
         <Link
           href="/"
@@ -46,7 +46,8 @@ const Navbar: React.FC = () => {
           passHref
         >
           <Button variant="outline" className="font-mono gap-2">
-             Github <Github className="h-4 w-4 text-gray-600 transition-colors group-hover:text-black" />
+            Github{" "}
+            <Github className="h-4 w-4 text-gray-600 transition-colors group-hover:text-black" />
           </Button>
         </Link>
       </div>
