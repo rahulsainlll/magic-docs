@@ -6,6 +6,7 @@ export const docsTable = pgTable("docs", {
   description: text("description"),
   author: text("author").notNull(),
   content: text("content").notNull(),
+
   createdAt: timestamp("createdAt").defaultNow(),
   updatedAt: timestamp("updatedAt").defaultNow(),
 });

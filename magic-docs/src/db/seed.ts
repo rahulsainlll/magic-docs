@@ -91,6 +91,7 @@ async function main() {
       description: doc.description,
       author: faker.person.fullName(),
       content: doc.content,
+      
     });
   });
 

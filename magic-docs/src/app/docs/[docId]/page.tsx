@@ -44,15 +44,20 @@ const Page = async ({ params }: PageProps) => {
             <div className="relative bg-zinc-100 w-full h-full overflow-hidden rounded-xl"></div>
           </div>
           <div className="mt-4">
-            <div className="flex items-center">
-              <p className="font-medium text-3xl text-gray-900">{docs.title}</p>
-            </div>
+          <div className="flex items-center">
+  <p className="font-medium text-3xl text-gray-900">
+    {docs.title.replace(/"/g, '')}
+  </p>
+</div>
+<div className="mt-4 space-y-6">
+            <p className="text-2xl max-w-prose text-muted-foreground">
+              {docs.description}
+            </p>
+          </div>
 
-            <div className="mt-4 space-y-6">
-              <p className="text-2xl max-w-prose text-muted-foreground">
-                {docs.description}
-              </p>
-            </div>
+ 
+
+           
 
             <div className="mt-4 space-y-6">
               <div className="prose prose-lg max-w-none">

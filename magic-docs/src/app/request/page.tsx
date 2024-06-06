@@ -77,7 +77,7 @@ export default function Write() {
           <form onSubmit={handleSubmit} className="mt-6">
             <label className="block">
               Email:
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required className="mt-1 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required className="mt-1 w-full h-8 px-2 rounded-md bg-white text-black border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" />
             </label>
             <label className="block mt-4">
               Message:
