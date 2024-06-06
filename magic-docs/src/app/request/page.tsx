@@ -1,160 +1,102 @@
 "use client";
-
-import React from "react";
-import { useState } from "react";
+import Footer from "@/pages/footer";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import emailjs from 'emailjs-com';
+import { FormEvent, ChangeEvent } from 'react';
 
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: "Roboto", sans-serif;
-`;
 
-const Title = styled.h1`
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
-`;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
+export default function Write() {
+  const [formData, setFormData] = useState({
+    email: '',
+    message: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-const Label = styled.label`
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #555;
-`;
-
-const Input = styled(motion.input)`
-  padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 1rem;
-  background-color: #f5f5f5;
-  transition: all 0.2s ease-in-out;
-
-  &:focus {
-    outline: none;
-    border-color: #2980b9;
-    box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
-  }
-`;
-
-const Textarea = styled(motion.textarea)`
-  padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 1rem;
-  background-color: #f5f5f5;
-  transition: all 0.2s ease-in-out;
-
-  &:focus {
-    outline: none;
-    border-color: #2980b9;
-    box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
-  }
-`;
-
-const Button = styled(motion.button)`
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  border: none;
-  background-color: #2980b9;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: #3498db;
-  }
-`;
-
-const StatusMessageWrapper = styled.p`
-  text-align: center;
-  margin-top: 1rem;
-`;
-
-const RequestDocumentationPage = () => {
-  const [email, setEmail] = useState("");
-  const [request, setRequest] = useState("");
-  const [status, setStatus] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
-        email,
-        message: request,
-      }),
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
     });
+  };
 
-    const result = await response.json();
-
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await fetch('https://formspree.io/f/xeqybnde', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
     if (response.ok) {
-      setStatus("Request sent successfully!");
-      setSuccess(true);
+      setSubmitted(true);
+      setFormData({ email: '', message: '' });
     } else {
-      setStatus(`Failed to send request: ${result.message}`);
-      setSuccess(false);
+      console.error('Form submission error');
     }
   };
 
   return (
-    <Container>
-      <Title>Request Documentation</Title>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="email">Email:</Label>
-        <Input
-          whileHover={{ scale: 1.02 }}
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <Label htmlFor="request">Documentation Request:</Label>
-        <Textarea
-          whileHover={{ scale: 1.02 }}
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          id="request"
-          value={request}
-          onChange={(e) => setRequest(e.target.value)}
-          required
-        />
-        <Button
-          whileHover={{ scale: 1.01 }}
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          type="submit"
-        >
-          Submit
-        </Button>
-      </Form>
-      {status && (
-        <StatusMessageWrapper style={{ color: success ? "#2ecc71" : "#e74c3c" }}>
-          {status}
-        </StatusMessageWrapper>
-      )}
-    </Container>
-  );
-};
+    <div>
+      <div className="py-8 pb-8 px-12 divide-y">
+        <div className="max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto">
+          <h1 className="font-medium text-3xl text-gray-900 mb-4">
+            Request your needed documentation !
+          </h1>
+          <p className="text-xl max-w-prose text-muted-foreground mb-4">
+            Welcome to our community! MagicDocs is a platform where users can
+            request the needed documentation for assistance for free!
+            Whether you're a student struggling with some tool or techstack , or a 
+            developer needing a easy to understand documentation about some topic ,
+             we welcome you to join us.
+          </p>
+          <h2 className="font-medium text-2xl antialiased text-gray-900 mb-2">
+            How It Works
+          </h2>
+          <ol className="list-decimal pl-6 mb-4 text-lg">
+            <li className="mb-2">
+              <span className="subpixel-antialiased">
+               Access and fill the form:
+              </span>{" "}
+              Begin by filling the form below where you can ask for the topic or framework you need help with.
+            </li>
 
-export default RequestDocumentationPage;
+            <li className="mb-2">
+              <span className="subpixel-antialiased">Be clear and specific:</span>{" "}
+               Fill a clear explanation of the framework you need help with and fill your email credentials to send us a request.
+            </li>
+          </ol>
+          <p className="text-lg">
+            Start requesting the topic or framework you need help with today 
+            and we will get back to you as soon as possible.
+          </p>
+          <form onSubmit={handleSubmit} className="mt-6">
+            <label className="block">
+              Email:
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required className="mt-1 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" />
+            </label>
+            <label className="block mt-4">
+              Message:
+              <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"></textarea>
+            </label>
+          <button
+  type="submit"
+  className="mt-4 bg-white-500 text-black py-2 px-4 rounded-md shadow-md shadow-gray-400 hover:border-black "
+>
+  Submit
+</button>
+          </form>
+          {submitted && <p className="mt-4 text-green-600">Thank you for your message!</p>}
+        </div>
+      </div>
+      <div className="mt-10">
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
