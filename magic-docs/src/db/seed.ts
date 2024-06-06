@@ -69,12 +69,13 @@ async function main() {
         const subtitleMatch = content.match(/^subtitle: (.*)/m);
         const subtitle = subtitleMatch ? subtitleMatch[1].trim() : '';
 
-        const description = `${subtitle}`;
+        
+        
         const remainingContent = content.replace(/^title:.*\n|^subtitle:.*\n/gm, '').trim();
 
         parsedDocs.push({
           title,
-          description,
+          description:subtitle,
           content: remainingContent,
         });
       }

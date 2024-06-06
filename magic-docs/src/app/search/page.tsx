@@ -57,8 +57,7 @@ const Page = async ({ searchParams }: PageProps) => {
           <Link key={doc.id} href={`/docs/${doc.id}`}>
             <li className="mx-auto py-4 px-8 flex space-x-4">
             <div className="relative flex items-center bg-zinc-100 rounded-lg h-40 w-40">
-             <h1> hellow</h1>
-             <h2>hii</h2>
+            
               </div>
 
 

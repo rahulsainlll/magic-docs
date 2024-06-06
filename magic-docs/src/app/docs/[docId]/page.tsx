@@ -49,11 +49,11 @@ const Page = async ({ params }: PageProps) => {
     {docs.title.replace(/"/g, '')}
   </p>
 </div>
-<div className="mt-4 space-y-6">
+{/* <div className="mt-4 space-y-6">
             <p className="text-2xl max-w-prose text-muted-foreground">
               {docs.description}
             </p>
-          </div>
+          </div> */}
 
  
 

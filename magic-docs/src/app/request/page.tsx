@@ -190,7 +190,7 @@ export default function Write() {
                     <AvatarFallback>KV</AvatarFallback>
                   </Avatar>
                   <a
-                    href="https://x.com/kairveee"
+                    href="https://www.linkedin.com/in/kairveee/"
                     className="underline ml-2"
                     target="_blank"
                     rel="noopener noreferrer"
